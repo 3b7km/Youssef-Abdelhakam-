@@ -47,9 +47,63 @@
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
+    },
+    "custom_gift_grid_pwVnhf": {
+      "type": "custom-gift-grid",
+      "blocks": {
+        "product_card_LPnU7c": {
+          "type": "product_card",
+          "settings": {
+            "product": "black-leather-bag"
+          }
+        },
+        "product_card_NXFD8T": {
+          "type": "product_card",
+          "settings": {
+            "product": "blue-silk-tuxedo"
+          }
+        },
+        "product_card_PyDx7r": {
+          "type": "product_card",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
+        },
+        "product_card_PmCK7a": {
+          "type": "product_card",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_card_GtDUY7": {
+          "type": "product_card",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_card_J4GzfC": {
+          "type": "product_card",
+          "settings": {
+            "product": "dark-denim-top"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_LPnU7c",
+        "product_card_NXFD8T",
+        "product_card_PyDx7r",
+        "product_card_PmCK7a",
+        "product_card_GtDUY7",
+        "product_card_J4GzfC"
+      ],
+      "name": "Custom Gift Grid",
+      "settings": {
+        "grid_title": "Tisso vison in the wild"
+      }
     }
   },
   "order": [
-    "image_banner"
+    "image_banner",
+    "custom_gift_grid_pwVnhf"
   ]
 }
