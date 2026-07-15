@@ -2,16 +2,41 @@
 
 <div class="cgb-section" id="CustomBanner-{{ section.id }}">
 
-  <!-- ① Top Bar: Logo | Tagline | Yellow CTA Button -->
+  <!-- ① Top Bar: Hamburger (mobile) | Logo | Tagline | CHOOSE GIFT (desktop) -->
   <div class="cgb-topbar">
+
+    {%- comment -%} Mobile-only hamburger button {%- endcomment -%}
+    <button type="button"
+            class="cgb-hamburger"
+            id="CgbHamburger-{{ section.id }}"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="CgbMobileNav-{{ section.id }}">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <div class="cgb-topbar-logo">{{ section.settings.logo_text | escape }}</div>
     <div class="cgb-topbar-tagline">{{ section.settings.tagline | escape }}</div>
+
+    {%- comment -%} Desktop: CHOOSE GIFT button always visible {%- endcomment -%}
     <div class="cgb-topbar-actions">
       <a href="{{ section.settings.choose_link | default: '#' }}" class="cgb-topbar-btn">
         <span>{{ section.settings.choose_label | escape }}</span>
         <span class="cgb-topbar-btn-arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>
+  </div>
+
+  <!-- Mobile dropdown nav: slides open when hamburger is tapped -->
+  <div class="cgb-mobile-nav"
+       id="CgbMobileNav-{{ section.id }}"
+       aria-hidden="true">
+    <a href="{{ section.settings.choose_link | default: '#' }}" class="cgb-topbar-btn cgb-mobile-nav-cta">
+      <span>{{ section.settings.choose_label | escape }}</span>
+      <span class="cgb-topbar-btn-arrow" aria-hidden="true">&rarr;</span>
+    </a>
   </div>
 
   <!-- ② Hero: Background illustration + bottom-left content -->
@@ -36,19 +61,32 @@
     </div>
   </div>
 
-  <!-- ③ Bottom scrolling ticker / announcement bar -->
+  <!-- ③ Bottom scrolling ticker / announcement -->
   {% if section.settings.ticker_text != blank %}
     <div class="cgb-ticker" aria-label="{{ section.settings.ticker_text | escape }}">
       <div class="cgb-ticker-track" aria-hidden="true">
-        {%- assign repeated = section.settings.ticker_text | escape -%}
         {%- for i in (1..8) -%}
-          <span class="cgb-ticker-item">{{ repeated }}</span>
+          <span class="cgb-ticker-item">{{ section.settings.ticker_text | escape }}</span>
         {%- endfor -%}
       </div>
     </div>
   {% endif %}
 
 </div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('CgbHamburger-{{ section.id }}');
+    var nav = document.getElementById('CgbMobileNav-{{ section.id }}');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.classList.toggle('is-active', open);
+      nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    });
+  })();
+</script>
 
 {% schema %}
 {
