@@ -39,10 +39,10 @@
     </a>
   </div>
 
-  <!-- ② Hero: stacked on mobile / full overlay on desktop -->
-  <div class="cgb-main"{% if section.settings.bg_image != blank %} style="--cgb-bg: url('{{ section.settings.bg_image | image_url: width: 1600 }}');"{% endif %}>
+  <!-- ② Hero: stacked on mobile / overlay on desktop via absolute positioning -->
+  <div class="cgb-main">
 
-    <!-- Title + description (above image on mobile, bottom-left overlay on desktop) -->
+    <!-- Title + description only — no button here -->
     <div class="cgb-hero-content">
       {% if section.settings.heading != blank %}
         <h1 class="cgb-title">{{ section.settings.heading | escape }}</h1>
@@ -50,16 +50,9 @@
       {% if section.settings.description != blank %}
         <p class="cgb-desc">{{ section.settings.description | escape }}</p>
       {% endif %}
-      <!-- Desktop-only button, positioned at bottom-left with content -->
-      {% if section.settings.btn_label != blank %}
-        <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn cgb-btn--desktop">
-          <span>{{ section.settings.btn_label | escape }}</span>
-          <span class="cgb-btn-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-      {% endif %}
     </div>
 
-    <!-- Illustration: <img> on mobile (hidden on desktop, bg-image used instead) -->
+    <!-- Illustration: always an <img> — CSS positions content over it on desktop -->
     {% if section.settings.bg_image != blank %}
       <div class="cgb-illustration">
         <img
@@ -70,10 +63,10 @@
           loading="eager"
           class="cgb-illustration-img">
 
-        <!-- Mobile-only button: centered overlay on the illustration -->
+        <!-- Single button: centered over illustration on mobile → bottom-left on desktop -->
         {% if section.settings.btn_label != blank %}
           <div class="cgb-illustration-btn-wrap">
-            <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn cgb-btn--mobile">
+            <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn">
               <span>{{ section.settings.btn_label | escape }}</span>
               <span class="cgb-btn-arrow" aria-hidden="true">&rarr;</span>
             </a>
@@ -83,6 +76,7 @@
     {% endif %}
 
   </div>
+
 
 
 

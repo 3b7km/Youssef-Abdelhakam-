@@ -142,36 +142,34 @@
   border: none;
 }
 
-/* ── Desktop (≥750px): full-bleed overlay layout ─────────────────────── */
+/* ── Desktop (≥750px): absolute overlay on the <img> illustration ───── */
 @media (min-width: 750px) {
 
-  /* Illustration fills the hero via CSS var --cgb-bg as background-image */
+  /* cgb-main becomes the positioned ancestor for all overlays */
   .cgb-main {
     position: relative;
-    min-height: 600px;
-    background-image: var(--cgb-bg);
-    background-size: cover;
-    background-position: center top;
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 48px 60px;
+    display: block;          /* switch from flex-column to block */
   }
 
-  /* Hide <img> element — background-image handles it on desktop */
+  /* Illustration stays visible — fills full height as background */
   .cgb-illustration {
-    display: none;
+    position: static;        /* children now position relative to cgb-main */
+    width: 100%;
+    line-height: 0;
   }
 
-  /* Show desktop button, hide mobile button */
-  .cgb-btn--desktop { display: inline-flex; }
-  .cgb-btn--mobile  { display: none; }
+  .cgb-illustration-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: center top;
+  }
 
-  /* Content overlaid at bottom-left of the illustration */
+  /* Hero content: absolutely overlaid at bottom-left */
   .cgb-hero-content {
-    position: relative;
+    position: absolute;
+    bottom: 120px;           /* leaves room for button below */
+    left: 60px;
     z-index: 2;
     text-align: left;
     align-items: flex-start;
@@ -181,18 +179,28 @@
     width: auto;
   }
 
+  /* Button: absolutely overlaid at bottom-left, below hero content */
+  .cgb-illustration-btn-wrap {
+    position: absolute;
+    bottom: 48px;
+    left: 60px;
+    top: auto;
+    transform: none;
+    z-index: 2;
+  }
+
   /* Larger title on desktop — no border */
   .cgb-title {
     font-size: 64px;
     margin-bottom: 20px;
   }
 
-  /* Left-aligned description */
+  /* Left-aligned description on desktop */
   .cgb-desc {
     font-size: 15px;
     color: #222222;
     max-width: 400px;
-    margin-bottom: 28px;
+    margin-bottom: 0;
   }
 }
 
