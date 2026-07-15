@@ -39,10 +39,10 @@
     </a>
   </div>
 
-  <!-- ② Hero: stacked on mobile / full overlay on desktop -->
-  <div class="cgb-main"{% if section.settings.bg_image != blank %} style="--cgb-bg: url('{{ section.settings.bg_image | image_url: width: 1600 }}');"{% endif %}>
+  <!-- ② Hero: title + desc above, then centered photo with button overlaid -->
+  <div class="cgb-main">
 
-    <!-- Content: centered white space above on mobile → bottom-left overlay on desktop -->
+    <!-- White space: title + description only -->
     <div class="cgb-hero-content">
       {% if section.settings.heading != blank %}
         <h1 class="cgb-title">{{ section.settings.heading | escape }}</h1>
@@ -50,24 +50,28 @@
       {% if section.settings.description != blank %}
         <p class="cgb-desc">{{ section.settings.description | escape }}</p>
       {% endif %}
-      {% if section.settings.btn_label != blank %}
-        <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn">
-          <span>{{ section.settings.btn_label | escape }}</span>
-          <span class="cgb-btn-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-      {% endif %}
     </div>
 
-    <!-- Illustration: <img> shown on mobile, hidden on desktop (bg-image used instead) -->
+    <!-- Centered photo with SHOP NOW button overlaid at center -->
     {% if section.settings.bg_image != blank %}
       <div class="cgb-illustration">
         <img
-          src="{{ section.settings.bg_image | image_url: width: 1400 }}"
+          src="{{ section.settings.bg_image | image_url: width: 1600 }}"
           alt=""
-          width="1400"
-          height="400"
+          width="1600"
+          height="450"
           loading="eager"
           class="cgb-illustration-img">
+
+        {%- comment -%} Button overlaid and centered on the photo {%- endcomment -%}
+        {% if section.settings.btn_label != blank %}
+          <div class="cgb-illustration-btn-wrap">
+            <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn">
+              <span>{{ section.settings.btn_label | escape }}</span>
+              <span class="cgb-btn-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 
