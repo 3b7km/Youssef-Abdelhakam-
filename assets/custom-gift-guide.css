@@ -70,7 +70,7 @@
 }
 
 /* ② Hero main area */
-/* ② Hero: illustration img on top, centered white-space content below */
+/* ── Hero (mobile-first: stacked) ────────────────────────────────────── */
 .cgb-main {
   width: 100%;
   display: flex;
@@ -78,13 +78,9 @@
   background: #ffffff;
 }
 
-/* Full-width illustration image — centered with max-width */
+/* Mobile: illustration shown as <img> below content */
 .cgb-illustration {
-  position: relative;
   width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  overflow: hidden;
   line-height: 0;
 }
 
@@ -92,24 +88,14 @@
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;            /* show full image, no cropping */
+  object-fit: cover;
   object-position: center;
 }
 
-/* SHOP NOW button centered over the photo */
-.cgb-illustration-btn-wrap {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  z-index: 3;
-  white-space: nowrap;
-}
-
-/* Centered content area below illustration */
+/* Mobile: content centered above illustration */
 .cgb-hero-content {
   width: 100%;
-  padding: 48px 24px 56px;
+  padding: 48px 24px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,29 +103,86 @@
   background: #ffffff;
 }
 
-/* Title keeps border-box, now centered */
+/* Mobile: border-box title */
 .cgb-title {
   display: inline-block;
-  font-size: 44px;
+  font-size: 36px;
   font-weight: 700;
   color: #111111;
   line-height: 1.1;
-  margin: 0 0 20px 0;
-  border: 2.5px solid #111111;
-  padding: 6px 18px;
+  margin: 0 0 16px 0;
+  border: 2px solid #111111;
+  padding: 5px 14px;
 }
 
-/* Clean centered description — no overlay bg or left border */
+/* Mobile: clean centered description */
 .cgb-desc {
-  font-size: 15px;
+  font-size: 14px;
   color: #444444;
-  line-height: 1.65;
-  margin: 0 0 30px 0;
-  max-width: 520px;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  max-width: 360px;
   background: none;
   padding: 0;
   border: none;
 }
+
+/* ── Desktop (≥750px): full overlay layout — matches reference ────────── */
+@media (min-width: 750px) {
+  /* Illustration fills the hero via CSS var background-image */
+  .cgb-main {
+    position: relative;
+    min-height: 580px;
+    background-image: var(--cgb-bg);
+    background-size: cover;
+    background-position: center top;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 48px 60px;
+  }
+
+  /* Hide <img> on desktop — background-image used instead */
+  .cgb-illustration {
+    display: none;
+  }
+
+  /* Content overlaid at bottom-left */
+  .cgb-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    align-items: flex-start;
+    padding: 0;
+    max-width: 460px;
+    background: transparent;
+    width: auto;
+  }
+
+  /* Large clean title — no border-box on desktop */
+  .cgb-title {
+    font-size: 64px;
+    border: none;
+    padding: 0;
+    background: none;
+    margin-bottom: 20px;
+  }
+
+  /* Clean left-aligned description */
+  .cgb-desc {
+    font-size: 15px;
+    color: #222222;
+    background: none;
+    border: none;
+    padding: 0;
+    max-width: 400px;
+    margin-bottom: 28px;
+  }
+}
+
+
 
 /* Shop button: black fill → outline on hover */
 .cgb-btn {
