@@ -39,10 +39,10 @@
     </a>
   </div>
 
-  <!-- ② Hero: centered text content FIRST (white space above), illustration image below -->
+  <!-- ② Hero: title + desc above, then centered photo with button overlaid -->
   <div class="cgb-main">
 
-    {%- comment -%} Centered text content in white space at the TOP {%- endcomment -%}
+    <!-- White space: title + description only -->
     <div class="cgb-hero-content">
       {% if section.settings.heading != blank %}
         <h1 class="cgb-title">{{ section.settings.heading | escape }}</h1>
@@ -50,15 +50,9 @@
       {% if section.settings.description != blank %}
         <p class="cgb-desc">{{ section.settings.description | escape }}</p>
       {% endif %}
-      {% if section.settings.btn_label != blank %}
-        <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn">
-          <span>{{ section.settings.btn_label | escape }}</span>
-          <span class="cgb-btn-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-      {% endif %}
     </div>
 
-    {%- comment -%} Full-width illustration image at the BOTTOM {%- endcomment -%}
+    <!-- Centered photo with SHOP NOW button overlaid at center -->
     {% if section.settings.bg_image != blank %}
       <div class="cgb-illustration">
         <img
@@ -68,10 +62,21 @@
           height="450"
           loading="eager"
           class="cgb-illustration-img">
+
+        {%- comment -%} Button overlaid and centered on the photo {%- endcomment -%}
+        {% if section.settings.btn_label != blank %}
+          <div class="cgb-illustration-btn-wrap">
+            <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn">
+              <span>{{ section.settings.btn_label | escape }}</span>
+              <span class="cgb-btn-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 
   </div>
+
 
 
 
