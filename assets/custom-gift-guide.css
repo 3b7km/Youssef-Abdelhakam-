@@ -174,39 +174,117 @@
   100% { transform: translateX(-50%); }
 }
 
-/* Mobile adjustments */
+
+/* ── Hamburger button (mobile only) ──────────────────────────────────── */
+.cgb-hamburger {
+  display: none;                  /* hidden on desktop */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 2px;
+  flex-shrink: 0;
+  order: -1;                      /* always leftmost in flex row */
+}
+
+.cgb-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #111111;
+  border-radius: 1px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+/* Animate to X when active */
+.cgb-hamburger.is-active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.cgb-hamburger.is-active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.cgb-hamburger.is-active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ── Mobile dropdown nav ──────────────────────────────────────────────── */
+.cgb-mobile-nav {
+  display: none;                  /* hidden on desktop */
+  flex-direction: column;
+  align-items: stretch;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e2e2;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.32s ease, padding 0.32s ease;
+  padding: 0 16px;
+}
+
+.cgb-mobile-nav.is-open {
+  max-height: 120px;
+  padding: 14px 16px;
+}
+
+.cgb-mobile-nav-cta {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Mobile breakpoint ────────────────────────────────────────────────── */
 @media (max-width: 749px) {
+  /* Top bar: show hamburger, hide tagline + desktop CTA */
+  .cgb-hamburger {
+    display: flex;
+  }
+
   .cgb-topbar {
     padding: 12px 16px;
-    flex-wrap: wrap;
-    gap: 8px;
+    gap: 0;
+    flex-wrap: nowrap;
+  }
+
+  .cgb-topbar-logo {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
   }
 
   .cgb-topbar-tagline {
     display: none;
   }
 
+  .cgb-topbar-actions {
+    display: none;                /* hidden — revealed via mobile dropdown */
+  }
+
+  .cgb-mobile-nav {
+    display: flex;               /* flex container is visible; max-height collapses it */
+  }
+
+  /* Hero: keep bottom-left, shrink font */
   .cgb-main {
-    min-height: 360px;
-    padding: 28px 20px;
+    min-height: 340px;
+    padding: 20px 20px 28px;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
 
   .cgb-hero-content {
-    max-width: 260px;
+    max-width: 230px;
   }
 
   .cgb-title {
-    font-size: 26px;
+    font-size: 24px;
     padding: 4px 10px;
+    border-width: 2px;
   }
 
   .cgb-desc {
     font-size: 12px;
+    margin-bottom: 18px;
   }
 
   .cgb-btn {
-    padding: 12px 20px;
-    font-size: 12px;
+    padding: 12px 18px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
   }
 }
 
