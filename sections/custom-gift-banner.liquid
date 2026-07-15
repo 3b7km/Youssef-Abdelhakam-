@@ -39,23 +39,10 @@
     </a>
   </div>
 
-  <!-- ② Hero: Illustration at top, centered text content below in white space -->
+  <!-- ② Hero: centered text content FIRST (white space above), illustration image below -->
   <div class="cgb-main">
 
-    {%- comment -%} Full-width illustration shown as <img>, not background {%- endcomment -%}
-    {% if section.settings.bg_image != blank %}
-      <div class="cgb-illustration">
-        <img
-          src="{{ section.settings.bg_image | image_url: width: 1600 }}"
-          alt=""
-          width="1600"
-          height="450"
-          loading="eager"
-          class="cgb-illustration-img">
-      </div>
-    {% endif %}
-
-    {%- comment -%} Centered text content in white space below illustration {%- endcomment -%}
+    {%- comment -%} Centered text content in white space at the TOP {%- endcomment -%}
     <div class="cgb-hero-content">
       {% if section.settings.heading != blank %}
         <h1 class="cgb-title">{{ section.settings.heading | escape }}</h1>
@@ -71,7 +58,21 @@
       {% endif %}
     </div>
 
+    {%- comment -%} Full-width illustration image at the BOTTOM {%- endcomment -%}
+    {% if section.settings.bg_image != blank %}
+      <div class="cgb-illustration">
+        <img
+          src="{{ section.settings.bg_image | image_url: width: 1600 }}"
+          alt=""
+          width="1600"
+          height="450"
+          loading="eager"
+          class="cgb-illustration-img">
+      </div>
+    {% endif %}
+
   </div>
+
 
 
   <!-- ③ Bottom scrolling ticker / announcement -->
