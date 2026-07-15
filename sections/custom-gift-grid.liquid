@@ -1,0 +1,156 @@
+{{ 'custom-gift-guide.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-gift-guide.js' | asset_url }}" defer="defer"></script>
+
+<div class="custom-gift-grid-wrapper page-width" id="CustomGrid-{{ section.id }}">
+  {% if section.settings.grid_title != blank %}
+    <h2 class="custom-gift-grid-title">{{ section.settings.grid_title | escape }}</h2>
+  {% endif %}
+
+  <div class="custom-gift-grid-container">
+    {% for block in section.blocks %}
+      {% assign product = block.settings.product %}
+      {% if product != blank %}
+
+        {%- comment -%}
+          We store critical fields as simple data-attributes (no JSON parsing needed).
+          Full variant JSON goes in a <script type="application/json"> tag inside the card.
+        {%- endcomment -%}
+        <div class="custom-gift-card"
+             data-product-handle="{{ product.handle }}"
+             data-product-title="{{ product.title | escape }}"
+             data-product-price="{{ product.price | money }}"
+             data-product-desc="{{ product.description | strip_html | escape | truncate: 160 }}"
+             data-product-image="{% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 600 }}{% endif %}"
+             data-block-id="{{ block.id }}">
+
+          {%- comment -%}
+            Manually build minimal JSON — avoids product.description HTML breaking JSON.parse.
+            product.options = array of option name strings: ["Size","Color"]
+            variant.option1 / option2 / option3 = the actual values
+          {%- endcomment -%}
+          <script type="application/json" class="product-json-data">{
+            "id": {{ product.id }},
+            "title": {{ product.title | json }},
+            "options": [{% for opt in product.options %}{{ opt | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+            "variants": [{% for v in product.variants %}{
+              "id": {{ v.id }},
+              "title": {{ v.title | json }},
+              "price": {{ v.price }},
+              "available": {{ v.available }},
+              "option1": {{ v.option1 | json }},
+              "option2": {{ v.option2 | json }},
+              "option3": {{ v.option3 | json }}
+            }{% unless forloop.last %},{% endunless %}{% endfor %}]
+          }</script>
+
+          <div class="custom-gift-card-img-wrapper">
+            {% if product.featured_image != blank %}
+              <img
+                src="{{ product.featured_image | image_url: width: 600 }}"
+                alt="{{ product.title | escape }}"
+                width="600"
+                height="600"
+                loading="lazy"
+                class="custom-gift-card-img">
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'custom-gift-card-img' }}
+            {% endif %}
+
+            <!-- Interactive '+' Hotspot Circle sitting over the product image -->
+            <button type="button" class="custom-gift-hotspot-btn" aria-label="Quick View {{ product.title | escape }}">
+              <span>+</span>
+            </button>
+          </div>
+
+          <div class="custom-gift-card-info">
+            <h3 class="custom-gift-card-title">{{ product.title }}</h3>
+            <div class="custom-gift-card-price">{{ product.price | money }}</div>
+          </div>
+        </div>
+
+      {% else %}
+        <div class="custom-gift-card custom-gift-card--placeholder">
+          <div class="custom-gift-card-img-wrapper">
+            {{ 'product-1' | placeholder_svg_tag: 'custom-gift-card-img' }}
+            <button type="button" class="custom-gift-hotspot-btn"><span>+</span></button>
+          </div>
+          <div class="custom-gift-card-info">
+            <h3 class="custom-gift-card-title">Select Product</h3>
+            <div class="custom-gift-card-price">—</div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Quick View Popup Modal — matching popup.png exactly -->
+  <div id="CustomGiftModal" class="custom-gift-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="custom-gift-modal-backdrop" data-modal-close></div>
+
+    <div class="custom-gift-popup-card">
+      <button type="button" class="custom-gift-popup-close" data-modal-close aria-label="Close modal">&times;</button>
+
+      <div class="custom-gift-popup-header">
+        <div class="custom-gift-popup-thumb-box">
+          <img id="ModalMainImg" src="" alt="" width="110" height="132" class="custom-gift-popup-thumb">
+        </div>
+        <div class="custom-gift-popup-header-info">
+          <h3 id="ModalTitle" class="custom-gift-popup-title"></h3>
+          <div id="ModalPrice" class="custom-gift-popup-price"></div>
+          <div id="ModalDesc" class="custom-gift-popup-desc"></div>
+        </div>
+      </div>
+
+      <form id="ModalCartForm" class="custom-gift-popup-form">
+        <div id="ModalVariantsContainer" class="custom-gift-popup-variants"></div>
+        <input type="hidden" id="ModalVariantId" name="id" value="">
+        <div id="ModalStatus" class="custom-gift-popup-status" aria-live="polite"></div>
+        <button type="submit" id="ModalSubmitBtn" class="custom-gift-popup-submit">
+          <span>ADD TO CART</span>
+          <span class="custom-gift-popup-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Gift Grid",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "grid_title",
+      "label": "Section Title",
+      "default": "Tisso vison in the wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Choose Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Gift Grid",
+      "blocks": [
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
