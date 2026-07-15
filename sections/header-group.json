@@ -25,6 +25,7 @@
     },
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
@@ -46,12 +47,16 @@
       "type": "custom-gift-banner",
       "name": "Custom Gift Banner",
       "settings": {
+        "logo_text": "TISSO VISON",
+        "tagline": "Find the ideal gift for your loved ones.",
+        "choose_label": "CHOOSE GIFT",
+        "choose_link": "",
         "bg_image": "shopify://shop_images/Frame.svg",
-        "fallback_bg_color": "#f9f9f9",
         "heading": "The Gift Guide",
         "description": "Discover Joy: Your Ultimate Holiday Gift Destination.",
         "btn_label": "SHOP NOW",
-        "btn_link": ""
+        "btn_link": "",
+        "ticker_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL!"
       }
     }
   },
