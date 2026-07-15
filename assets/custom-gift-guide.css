@@ -1,359 +1,94 @@
-/* ── Custom Gift Banner (cgb-) ─────────────────────────────────────────── */
-
-/* ① Top Bar */
-.cgb-section {
+/* --- 1. Custom Gift Banner --- */
+.custom-gift-banner-wrapper {
+  position: relative;
   width: 100%;
-  font-family: inherit;
-}
-
-.cgb-topbar {
+  min-height: 480px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 36px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
-  min-height: 54px;
-}
-
-.cgb-topbar-logo {
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #111111;
-  flex-shrink: 0;
-}
-
-.cgb-topbar-tagline {
-  flex: 1;
+  justify-content: center;
   text-align: center;
-  font-size: 13px;
-  color: #444444;
-  padding: 0 24px;
-  line-height: 1.4;
+  padding: 60px 20px;
+  overflow: hidden;
 }
 
-.cgb-topbar-actions {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
+.custom-gift-banner-container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.cgb-topbar-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #f5c518;
-  color: #111111;
-  padding: 10px 20px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background 0.25s ease, transform 0.25s ease;
-  white-space: nowrap;
-}
-
-.cgb-topbar-btn:hover {
-  background: #e6b800;
-}
-
-.cgb-topbar-btn-arrow {
-  display: inline-block;
-  transition: transform 0.25s ease;
-}
-
-.cgb-topbar-btn:hover .cgb-topbar-btn-arrow {
-  transform: translateX(4px);
-}
-
-/* ② Hero main area */
-/* ── Hero (mobile-first: stacked) ────────────────────────────────────── */
-.cgb-main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-}
-
-/* Mobile: illustration shown as <img> below content */
-.cgb-illustration {
-  width: 100%;
-  line-height: 0;
-}
-
-.cgb-illustration-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Mobile: content centered above illustration */
-.cgb-hero-content {
-  width: 100%;
-  padding: 48px 24px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: #ffffff;
-}
-
-/* Mobile: border-box title */
-.cgb-title {
-  display: inline-block;
-  font-size: 36px;
+.custom-gift-banner-title {
+  font-size: 48px;
   font-weight: 700;
   color: #111111;
-  line-height: 1.1;
   margin: 0 0 16px 0;
-  border: 2px solid #111111;
-  padding: 5px 14px;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
 }
 
-/* Mobile: clean centered description */
-.cgb-desc {
-  font-size: 14px;
+.custom-gift-banner-subtext {
+  font-size: 16px;
   color: #444444;
   line-height: 1.6;
-  margin: 0 0 24px 0;
-  max-width: 360px;
-  background: none;
-  padding: 0;
-  border: none;
+  margin: 0 auto 32px auto;
+  max-width: 600px;
 }
 
-/* ── Desktop (≥750px): full overlay layout — matches reference ────────── */
-@media (min-width: 750px) {
-  /* Illustration fills the hero via CSS var background-image */
-  .cgb-main {
-    position: relative;
-    min-height: 580px;
-    background-image: var(--cgb-bg);
-    background-size: cover;
-    background-position: center top;
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 48px 60px;
-  }
-
-  /* Hide <img> on desktop — background-image used instead */
-  .cgb-illustration {
-    display: none;
-  }
-
-  /* Content overlaid at bottom-left */
-  .cgb-hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: left;
-    align-items: flex-start;
-    padding: 0;
-    max-width: 460px;
-    background: transparent;
-    width: auto;
-  }
-
-  /* Large clean title — no border-box on desktop */
-  .cgb-title {
-    font-size: 64px;
-    border: none;
-    padding: 0;
-    background: none;
-    margin-bottom: 20px;
-  }
-
-  /* Clean left-aligned description */
-  .cgb-desc {
-    font-size: 15px;
-    color: #222222;
-    background: none;
-    border: none;
-    padding: 0;
-    max-width: 400px;
-    margin-bottom: 28px;
-  }
-}
-
-
-
-/* Shop button: black fill → outline on hover */
-.cgb-btn {
+.custom-gift-banner-btn {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  background: #111111;
+  gap: 12px;
+  background-color: #111111;
   color: #ffffff;
-  padding: 14px 28px;
-  font-size: 13px;
-  font-weight: 700;
+  padding: 16px 36px;
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
-  border: 2px solid #111111;
-  transition: background 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
-.cgb-btn:hover {
-  background: transparent;
-  color: #111111;
+.custom-gift-banner-btn:hover {
+  background-color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.cgb-btn-arrow {
-  display: inline-block;
+.custom-gift-banner-btn-arrow {
   transition: transform 0.3s ease;
 }
 
-.cgb-btn:hover .cgb-btn-arrow {
-  transform: translateX(6px);
+.custom-gift-banner-btn:hover .custom-gift-banner-btn-arrow {
+  transform: translateX(4px);
 }
 
-/* ③ Scrolling ticker */
-.cgb-ticker {
-  background: #ffffff;
-  border-top: 1px solid #e2e2e2;
-  overflow: hidden;
-  padding: 9px 0;
-  white-space: nowrap;
-}
-
-.cgb-ticker-track {
-  display: inline-flex;
-  gap: 0;
-  animation: cgb-scroll 28s linear infinite;
-}
-
-.cgb-ticker-item {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #333333;
-  padding: 0 60px;
-}
-
-@keyframes cgb-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-
-/* ── Hamburger button (mobile only) ──────────────────────────────────── */
-.cgb-hamburger {
-  display: none;                  /* hidden on desktop */
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px 2px;
-  flex-shrink: 0;
-  order: -1;                      /* always leftmost in flex row */
-}
-
-.cgb-hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #111111;
-  border-radius: 1px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  transform-origin: center;
-}
-
-/* Animate to X when active */
-.cgb-hamburger.is-active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.cgb-hamburger.is-active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.cgb-hamburger.is-active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-/* ── Mobile dropdown nav ──────────────────────────────────────────────── */
-.cgb-mobile-nav {
-  display: none;                  /* hidden on desktop */
-  flex-direction: column;
-  align-items: stretch;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.32s ease, padding 0.32s ease;
-  padding: 0 16px;
-}
-
-.cgb-mobile-nav.is-open {
-  max-height: 120px;
-  padding: 14px 16px;
-}
-
-.cgb-mobile-nav-cta {
-  width: 100%;
-  justify-content: center;
-}
-
-/* ── Mobile breakpoint ────────────────────────────────────────────────── */
 @media (max-width: 749px) {
-  /* Top bar: show hamburger, hide tagline + desktop CTA */
-  .cgb-hamburger {
-    display: flex;
+  .custom-gift-banner-wrapper {
+    min-height: 380px;
+    padding: 40px 16px;
   }
 
-  .cgb-topbar {
-    padding: 12px 16px;
-    gap: 0;
-    flex-wrap: nowrap;
+  .custom-gift-banner-title {
+    font-size: 28px;
   }
 
-  .cgb-topbar-logo {
-    flex: 1;
-    text-align: center;
-    font-size: 14px;
-  }
-
-  .cgb-topbar-tagline {
-    display: none;
-  }
-
-  .cgb-topbar-actions {
-    display: none;                /* hidden — revealed via mobile dropdown */
-  }
-
-  .cgb-mobile-nav {
-    display: flex;               /* flex container is visible; max-height collapses it */
-  }
-
-  /* Hero: stacked layout — just shrink text on mobile */
-  .cgb-hero-content {
-    padding: 32px 20px 40px;
-  }
-
-  .cgb-title {
-    font-size: 26px;
-    padding: 5px 12px;
-    border-width: 2px;
-  }
-
-  .cgb-desc {
+  .custom-gift-banner-subtext {
     font-size: 13px;
-    max-width: 320px;
-    margin-bottom: 22px;
+    max-width: 300px;
+    margin-bottom: 24px;
   }
 
-  .cgb-btn {
-    padding: 12px 22px;
-    font-size: 12px;
-    letter-spacing: 0.8px;
+  .custom-gift-banner-btn {
+    padding: 14px 28px;
+    font-size: 13px;
   }
-}   /* end @media (max-width: 749px) */
-
-
+}
 
 /* --- 2. Custom Gift Grid --- */
 .custom-gift-grid-wrapper {
