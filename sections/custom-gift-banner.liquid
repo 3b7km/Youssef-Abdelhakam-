@@ -1,30 +1,53 @@
 {{ 'custom-gift-guide.css' | asset_url | stylesheet_tag }}
 
-<div class="custom-gift-banner-wrapper" id="CustomBanner-{{ section.id }}" style="
-  {% if section.settings.bg_image != blank %}
-    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
-  {% else %}
-    background-color: {{ section.settings.fallback_bg_color }};
-  {% endif %}
-">
-  <div class="custom-gift-banner-container page-width">
-    <div class="custom-gift-banner-content">
+<div class="cgb-section" id="CustomBanner-{{ section.id }}">
+
+  <!-- ① Top Bar: Logo | Tagline | Yellow CTA Button -->
+  <div class="cgb-topbar">
+    <div class="cgb-topbar-logo">{{ section.settings.logo_text | escape }}</div>
+    <div class="cgb-topbar-tagline">{{ section.settings.tagline | escape }}</div>
+    <div class="cgb-topbar-actions">
+      <a href="{{ section.settings.choose_link | default: '#' }}" class="cgb-topbar-btn">
+        <span>{{ section.settings.choose_label | escape }}</span>
+        <span class="cgb-topbar-btn-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ② Hero: Background illustration + bottom-left content -->
+  <div class="cgb-main"
+    {% if section.settings.bg_image != blank %}
+      style="background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');"
+    {% endif %}>
+
+    <div class="cgb-hero-content">
       {% if section.settings.heading != blank %}
-        <h1 class="custom-gift-banner-title">{{ section.settings.heading | escape }}</h1>
+        <h1 class="cgb-title">{{ section.settings.heading | escape }}</h1>
       {% endif %}
-
       {% if section.settings.description != blank %}
-        <p class="custom-gift-banner-subtext">{{ section.settings.description | escape }}</p>
+        <p class="cgb-desc">{{ section.settings.description | escape }}</p>
       {% endif %}
-
       {% if section.settings.btn_label != blank %}
-        <a href="{{ section.settings.btn_link | default: '#' }}" class="custom-gift-banner-btn">
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="cgb-btn">
           <span>{{ section.settings.btn_label | escape }}</span>
-          <span class="custom-gift-banner-btn-arrow" aria-hidden="true">&rarr;</span>
+          <span class="cgb-btn-arrow" aria-hidden="true">&rarr;</span>
         </a>
       {% endif %}
     </div>
   </div>
+
+  <!-- ③ Bottom scrolling ticker / announcement bar -->
+  {% if section.settings.ticker_text != blank %}
+    <div class="cgb-ticker" aria-label="{{ section.settings.ticker_text | escape }}">
+      <div class="cgb-ticker-track" aria-hidden="true">
+        {%- assign repeated = section.settings.ticker_text | escape -%}
+        {%- for i in (1..8) -%}
+          <span class="cgb-ticker-item">{{ repeated }}</span>
+        {%- endfor -%}
+      </div>
+    </div>
+  {% endif %}
+
 </div>
 
 {% schema %}
@@ -32,20 +55,45 @@
   "name": "Custom Gift Banner",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "bg_image",
-      "label": "Background Illustration Image (Exported from Figma)"
+      "type": "header",
+      "content": "Top Bar"
     },
     {
-      "type": "color",
-      "id": "fallback_bg_color",
-      "label": "Fallback Background Color",
-      "default": "#f9f9f9"
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo / Brand Name",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Center Tagline",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "choose_label",
+      "label": "CTA Button Label",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "choose_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Hero Area"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Illustration Image"
     },
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading Text",
+      "label": "Main Heading",
       "default": "The Gift Guide"
     },
     {
@@ -57,13 +105,23 @@
     {
       "type": "text",
       "id": "btn_label",
-      "label": "Button Label",
+      "label": "Shop Button Label",
       "default": "SHOP NOW"
     },
     {
       "type": "url",
       "id": "btn_link",
-      "label": "Button Link"
+      "label": "Shop Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Announcement Ticker"
+    },
+    {
+      "type": "text",
+      "id": "ticker_text",
+      "label": "Ticker Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL!"
     }
   ],
   "presets": [
