@@ -1,0 +1,576 @@
+/* --- 1. Custom Gift Banner --- */
+.custom-gift-banner-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  overflow: hidden;
+}
+
+.custom-gift-banner-container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.custom-gift-banner-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.custom-gift-banner-subtext {
+  font-size: 16px;
+  color: #444444;
+  line-height: 1.6;
+  margin: 0 auto 32px auto;
+  max-width: 600px;
+}
+
+.custom-gift-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 16px 36px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.custom-gift-banner-btn:hover {
+  background-color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.custom-gift-banner-btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.custom-gift-banner-btn:hover .custom-gift-banner-btn-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 749px) {
+  .custom-gift-banner-wrapper {
+    min-height: 380px;
+    padding: 40px 16px;
+  }
+
+  .custom-gift-banner-title {
+    font-size: 28px;
+  }
+
+  .custom-gift-banner-subtext {
+    font-size: 13px;
+    max-width: 300px;
+    margin-bottom: 24px;
+  }
+
+  .custom-gift-banner-btn {
+    padding: 14px 28px;
+    font-size: 13px;
+  }
+}
+
+/* --- 2. Custom Gift Grid --- */
+.custom-gift-grid-wrapper {
+  padding: 60px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.custom-gift-grid-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111111;
+  text-align: left;
+  margin: 0 0 40px 0;
+  letter-spacing: -0.5px;
+}
+
+.custom-gift-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.custom-gift-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.custom-gift-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f4f4f4;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.custom-gift-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.custom-gift-card:hover .custom-gift-card-img {
+  transform: scale(1.04);
+}
+
+/* Interactive '+' Hotspot Circle */
+.custom-gift-hotspot-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.25s ease;
+}
+
+.custom-gift-hotspot-btn span {
+  font-size: 22px;
+  font-weight: 400;
+  color: #111111;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.custom-gift-hotspot-btn:hover {
+  background: #111111;
+  transform: scale(1.1);
+}
+
+.custom-gift-hotspot-btn:hover span {
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.custom-gift-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.custom-gift-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111111;
+  margin: 0;
+}
+
+.custom-gift-card-price {
+  font-size: 15px;
+  font-weight: 500;
+  color: #666666;
+}
+
+/* Mobile Grid Styling (375px exact match) */
+@media (max-width: 749px) {
+  .custom-gift-grid-wrapper {
+    padding: 30px 12px;
+  }
+
+  .custom-gift-grid-title {
+    font-size: 24px;
+    font-weight: 400;
+    font-family: serif;
+    text-align: center;
+    margin: 0 0 24px 0;
+  }
+
+  .custom-gift-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .custom-gift-card-img-wrapper {
+    margin-bottom: 8px;
+    border-radius: 2px;
+  }
+
+  .custom-gift-hotspot-btn {
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .custom-gift-hotspot-btn span {
+    font-size: 16px;
+  }
+
+  .custom-gift-card-info {
+    display: none;
+  }
+}
+
+/* --- 3. Quick View Compact Card Popup (Exact Figma Mockup Frame 1000009752/9753) --- */
+.custom-gift-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.custom-gift-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.custom-gift-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* Compact Card Box matching popup.png exactly */
+.custom-gift-popup-card {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  width: 92%;
+  max-width: 360px;
+  padding: 20px 20px 20px 20px;
+  border-radius: 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.18);
+  animation: popupCardIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+@keyframes popupCardIn {
+  from {
+    transform: translateY(12px) scale(0.96);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.custom-gift-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  color: #222222;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.custom-gift-popup-close:hover {
+  transform: scale(1.15);
+}
+
+/* Top Row: Portrait Thumbnail + Info (matching popup.png) */
+.custom-gift-popup-header {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+  align-items: flex-start;
+}
+
+.custom-gift-popup-thumb-box {
+  width: 110px;
+  height: 132px;
+  flex-shrink: 0;
+  border-radius: 0;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.custom-gift-popup-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.custom-gift-popup-header-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.custom-gift-popup-title {
+  font-size: 15px;
+  font-weight: 400;
+  color: #222222;
+  margin: 0 0 6px 0;
+  line-height: 1.35;
+  padding-right: 20px;
+  /* leave room for × button */
+}
+
+.custom-gift-popup-price {
+  font-size: 17px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 8px;
+}
+
+.custom-gift-popup-desc {
+  font-size: 11px;
+  color: #777777;
+  line-height: 1.45;
+}
+
+/* Form / Variants Area */
+.custom-gift-popup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-gift-popup-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.custom-gift-popup-variant-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.custom-gift-popup-variant-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+}
+
+/* Horizontal Color Buttons with swatch strip (matching popup.png exactly) */
+.custom-gift-popup-color-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.custom-gift-popup-color-btn {
+  background: #ffffff;
+  border: none;
+  padding: 11px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #111111;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Thin vertical divider between the two buttons */
+.custom-gift-popup-color-btn:not(:last-child) {
+  border-right: 1px solid #cccccc;
+}
+
+/* Color swatch strip — injected via JS as data-swatch-color on each button */
+.custom-gift-popup-color-btn::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 0;
+  background-color: var(--swatch-color, transparent);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.custom-gift-popup-color-btn:hover {
+  background: #fafafa;
+}
+
+.custom-gift-popup-color-btn.is-active {
+  font-weight: 600;
+  background: #fafafa;
+}
+
+/* Size Dropdown Box with Right Divider and caret (matching popup.png exactly) */
+.custom-gift-popup-select-wrapper {
+  position: relative;
+  width: 100%;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.custom-gift-popup-select {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: #111111;
+  background: transparent;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.custom-gift-popup-select-arrow {
+  width: 44px;
+  align-self: stretch;
+  border-left: 1px solid #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+/* CSS chevron — no text/Unicode character needed */
+.custom-gift-popup-select-arrow::after {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #333333;
+  border-bottom: 2px solid #333333;
+  transform: rotate(45deg) translate(-1px, -3px);
+}
+
+.custom-gift-popup-status {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  min-height: 18px;
+}
+
+.custom-gift-popup-status.is-success {
+  color: #15803d;
+}
+
+.custom-gift-popup-status.is-error {
+  color: #dc2626;
+}
+
+/* Solid Black CTA Button matching popup.png (ADD TO CART  →) */
+.custom-gift-popup-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 18px;
+  background: #111111;
+  color: #ffffff;
+  border: none;
+  border-radius: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 4px;
+}
+
+.custom-gift-popup-submit:hover:not(:disabled) {
+  background: #2d2d2d;
+}
+
+.custom-gift-popup-submit:disabled {
+  background: #bbbbbb;
+  cursor: not-allowed;
+}
+
+.custom-gift-popup-arrow {
+  font-size: 20px;
+  letter-spacing: 0;
+  transition: transform 0.3s ease;
+}
+
+.custom-gift-popup-submit:hover .custom-gift-popup-arrow {
+  transform: translateX(5px);
+}
+
+/* Mobile Popup Adjustments (375px specifically) */
+@media (max-width: 749px) {
+  .custom-gift-popup-card {
+    width: 94%;
+    padding: 16px;
+  }
+
+  .custom-gift-popup-thumb-box {
+    width: 88px;
+    height: 106px;
+  }
+
+  .custom-gift-popup-title {
+    font-size: 14px;
+  }
+
+  .custom-gift-popup-price {
+    font-size: 15px;
+  }
+
+  .custom-gift-popup-desc {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .custom-gift-popup-submit {
+    font-size: 12px;
+    padding: 13px 14px;
+  }
+}
