@@ -46,6 +46,7 @@
       "type": "custom-gift-banner",
       "name": "Custom Gift Banner",
       "settings": {
+        "bg_image": "shopify://shop_images/Frame.svg",
         "fallback_bg_color": "#f9f9f9",
         "heading": "The Gift Guide",
         "description": "Discover Joy: Your Ultimate Holiday Gift Destination.",
