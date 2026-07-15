@@ -70,47 +70,62 @@
 }
 
 /* ② Hero main area */
+/* ② Hero: illustration img on top, centered white-space content below */
 .cgb-main {
-  position: relative;
   width: 100%;
-  min-height: 500px;
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: #f5f5f5;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 44px 48px;
+  flex-direction: column;
+  background: #ffffff;
 }
 
+/* Full-width illustration image */
+.cgb-illustration {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;         /* remove gap below inline img */
+}
+
+.cgb-illustration-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Centered content area below illustration */
 .cgb-hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 400px;
+  width: 100%;
+  padding: 48px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
 }
 
-/* Title with border-box (matching the red-bordered box in reference) */
+/* Title keeps border-box, now centered */
 .cgb-title {
   display: inline-block;
   font-size: 44px;
   font-weight: 700;
   color: #111111;
   line-height: 1.1;
-  margin: 0 0 16px 0;
+  margin: 0 0 20px 0;
   border: 2.5px solid #111111;
-  padding: 5px 14px;
-  background: rgba(255, 255, 255, 0.88);
+  padding: 6px 18px;
 }
 
+/* Clean centered description — no overlay bg or left border */
 .cgb-desc {
-  font-size: 14px;
-  color: #111111;
-  line-height: 1.6;
-  margin: 0 0 24px 0;
-  background: rgba(255, 255, 255, 0.82);
-  padding: 8px 12px;
-  border-left: 2.5px solid #111111;
+  font-size: 15px;
+  color: #444444;
+  line-height: 1.65;
+  margin: 0 0 30px 0;
+  max-width: 520px;
+  background: none;
+  padding: 0;
+  border: none;
 }
 
 /* Shop button: black fill → outline on hover */
@@ -258,35 +273,29 @@
     display: flex;               /* flex container is visible; max-height collapses it */
   }
 
-  /* Hero: keep bottom-left, shrink font */
-  .cgb-main {
-    min-height: 340px;
-    padding: 20px 20px 28px;
-    align-items: flex-end;
-    justify-content: flex-start;
-  }
-
+  /* Hero: stacked layout — just shrink text on mobile */
   .cgb-hero-content {
-    max-width: 230px;
+    padding: 32px 20px 40px;
   }
 
   .cgb-title {
-    font-size: 24px;
-    padding: 4px 10px;
+    font-size: 26px;
+    padding: 5px 12px;
     border-width: 2px;
   }
 
   .cgb-desc {
-    font-size: 12px;
-    margin-bottom: 18px;
+    font-size: 13px;
+    max-width: 320px;
+    margin-bottom: 22px;
   }
 
   .cgb-btn {
-    padding: 12px 18px;
-    font-size: 11px;
+    padding: 12px 22px;
+    font-size: 12px;
     letter-spacing: 0.8px;
-  }
 }
+
 
 
 
