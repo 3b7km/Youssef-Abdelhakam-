@@ -41,10 +41,22 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "custom_gift_banner_rrH4yW": {
+      "type": "custom-gift-banner",
+      "name": "Custom Gift Banner",
+      "settings": {
+        "fallback_bg_color": "#f9f9f9",
+        "heading": "The Gift Guide",
+        "description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "btn_label": "SHOP NOW",
+        "btn_link": ""
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "custom_gift_banner_rrH4yW"
   ]
 }
