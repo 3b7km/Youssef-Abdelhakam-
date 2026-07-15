@@ -1,94 +1,216 @@
-/* --- 1. Custom Gift Banner --- */
-.custom-gift-banner-wrapper {
-  position: relative;
+/* ── Custom Gift Banner (cgb-) ─────────────────────────────────────────── */
+
+/* ① Top Bar */
+.cgb-section {
   width: 100%;
-  min-height: 480px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  font-family: inherit;
+}
+
+.cgb-topbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 60px 20px;
-  overflow: hidden;
+  justify-content: space-between;
+  padding: 14px 36px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e2e2;
+  min-height: 54px;
 }
 
-.custom-gift-banner-container {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.custom-gift-banner-title {
-  font-size: 48px;
-  font-weight: 700;
+.cgb-topbar-logo {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: #111111;
-  margin: 0 0 16px 0;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
+  flex-shrink: 0;
 }
 
-.custom-gift-banner-subtext {
-  font-size: 16px;
+.cgb-topbar-tagline {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
   color: #444444;
-  line-height: 1.6;
-  margin: 0 auto 32px auto;
-  max-width: 600px;
+  padding: 0 24px;
+  line-height: 1.4;
 }
 
-.custom-gift-banner-btn {
+.cgb-topbar-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.cgb-topbar-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background-color: #111111;
-  color: #ffffff;
-  padding: 16px 36px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  gap: 10px;
+  background: #f5c518;
+  color: #111111;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: background 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
 }
 
-.custom-gift-banner-btn:hover {
-  background-color: #333333;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+.cgb-topbar-btn:hover {
+  background: #e6b800;
 }
 
-.custom-gift-banner-btn-arrow {
-  transition: transform 0.3s ease;
+.cgb-topbar-btn-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
 }
 
-.custom-gift-banner-btn:hover .custom-gift-banner-btn-arrow {
+.cgb-topbar-btn:hover .cgb-topbar-btn-arrow {
   transform: translateX(4px);
 }
 
+/* ② Hero main area */
+.cgb-main {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 44px 48px;
+}
+
+.cgb-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 400px;
+}
+
+/* Title with border-box (matching the red-bordered box in reference) */
+.cgb-title {
+  display: inline-block;
+  font-size: 44px;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+  border: 2.5px solid #111111;
+  padding: 5px 14px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.cgb-desc {
+  font-size: 14px;
+  color: #111111;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 8px 12px;
+  border-left: 2.5px solid #111111;
+}
+
+/* Shop button: black fill → outline on hover */
+.cgb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: #111111;
+  color: #ffffff;
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #111111;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.cgb-btn:hover {
+  background: transparent;
+  color: #111111;
+}
+
+.cgb-btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.cgb-btn:hover .cgb-btn-arrow {
+  transform: translateX(6px);
+}
+
+/* ③ Scrolling ticker */
+.cgb-ticker {
+  background: #ffffff;
+  border-top: 1px solid #e2e2e2;
+  overflow: hidden;
+  padding: 9px 0;
+  white-space: nowrap;
+}
+
+.cgb-ticker-track {
+  display: inline-flex;
+  gap: 0;
+  animation: cgb-scroll 28s linear infinite;
+}
+
+.cgb-ticker-item {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #333333;
+  padding: 0 60px;
+}
+
+@keyframes cgb-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Mobile adjustments */
 @media (max-width: 749px) {
-  .custom-gift-banner-wrapper {
-    min-height: 380px;
-    padding: 40px 16px;
+  .cgb-topbar {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .custom-gift-banner-title {
-    font-size: 28px;
+  .cgb-topbar-tagline {
+    display: none;
   }
 
-  .custom-gift-banner-subtext {
-    font-size: 13px;
-    max-width: 300px;
-    margin-bottom: 24px;
+  .cgb-main {
+    min-height: 360px;
+    padding: 28px 20px;
   }
 
-  .custom-gift-banner-btn {
-    padding: 14px 28px;
-    font-size: 13px;
+  .cgb-hero-content {
+    max-width: 260px;
+  }
+
+  .cgb-title {
+    font-size: 26px;
+    padding: 4px 10px;
+  }
+
+  .cgb-desc {
+    font-size: 12px;
+  }
+
+  .cgb-btn {
+    padding: 12px 20px;
+    font-size: 12px;
   }
 }
+
+
 
 /* --- 2. Custom Gift Grid --- */
 .custom-gift-grid-wrapper {
